@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Carrito } from '../../models/carrito';
+import { Producto } from '../../models/producto';
 
 @Component({
   selector: 'app-tienda',
@@ -66,25 +68,5 @@ export class TiendaComponent {
 
   cerrarAlerta() {
     this.comprado = false;
-  }
-}
-
-class Producto {
-  nombre: string;
-  precio: number;
-
-  constructor(_nombre: string, _precio: number) {
-    this.nombre = _nombre;
-    this.precio = _precio;
-  }
-}
-
-class Carrito {
-  producto: Producto
-  cantidad: number
-
-  constructor(_producto: Producto, _cantidad: number) {
-    this.producto = _producto
-    this.cantidad = _cantidad
   }
 }
