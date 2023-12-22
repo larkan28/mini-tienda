@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="titulo">
+                    <h3>Lista de productos</h3>
+                </div>
+                <hr>
+
+                <!-- Lista productos -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of listaProductos">
+                            <td> {{producto.nombre}} </td>
+                            <td> ${{producto.precio}} </td>
+                            <td>
+                                <button (click)="comprarProducto(producto)" class="btn btn-success"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col">
+                <div class="titulo">
+                    <h3>Carrito</h3>
+                </div>
+                <hr>
+
+                <!-- Lista carrito -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let carrito of listaCarrito; index as i">
+                            <td> {{carrito.producto.nombre}} </td>
+                            <td> {{carrito.cantidad}} </td>
+                            <td>
+                                <button (click)="quitarProducto(i)" class="btn btn-danger"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card total">
+        <div class="card-header">
+            Total: <b>${{verTotal()}}</b>
+        </div>
+        <div class="card-body">
+            <button (click)="finalizarCompra()" [disabled]="listaCarrito.length < 1" class="btn btn-success"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>&nbsp;
+            <button (click)="limpiarCarrito()" class="btn btn-primary"><i class="fa-solid fa-trash"></i> Limpiar carrito</button>
+        </div>
+    </div>
+
+    <div [hidden]="!comprado">
+        <br>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Compra finalizada
+            <button (click)="cerrarAlerta()" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Hecho por Facundo Lobo - <a href="https://github.com/larkan28" target="_blank">GitHub</a></p>
+    <p>© Copyright - 2023</p>
+</div>
